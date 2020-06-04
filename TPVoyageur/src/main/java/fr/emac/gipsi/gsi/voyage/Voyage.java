@@ -17,6 +17,11 @@ public class Voyage extends AbstractVoyage {
      * @param listPlanete
      * @param simulatedVoyageur
      */
+	
+	protected ArrayList<Planete> listPlanete;
+	protected AbstractVoyageur simulatedVoyageur;
+	
+	
     public Voyage(ArrayList<Planete> listPlanete, AbstractVoyageur simulatedVoyageur) {
         super(listPlanete, simulatedVoyageur);
         // TODO Auto-generated constructor stub
@@ -65,6 +70,20 @@ public class Voyage extends AbstractVoyage {
     @Override
     public void lancementSimuler() {
         // TODO Auto-generated method stub
-        afficheEcran();
+    	AbstractVoyageur _simulatedVoyageur = this.getSimulatedvoyageur();
+        
+		for (int i=0; i < 4; i++) {
+	        afficheEcran();
+	        wait(500);
+			_simulatedVoyageur.goForward();
+	        afficheEcran();
+	        wait(500);
+			_simulatedVoyageur.goBackward();
+	        afficheEcran();
+	        wait(500);
+	        _simulatedVoyageur.turnLeft();
+	        afficheEcran();
+	        wait(500);
+		}
     }
 }
