@@ -3,6 +3,8 @@
  */
 package fr.emac.gipsi.gsi.voyageur;
 
+import fr.emac.gipsi.gsi.voyage.Position;
+
 /**
  * @author Truptil Sebastien - sebastien.truptil@gmail.com
  *
@@ -21,7 +23,39 @@ public class VoyageurSimuler extends AbstractVoyageur {
      */
     @Override
     protected void forward() {
-        // TODO Auto-generated method stub
+    	
+       System.out.println("En AVANT !");
+       int posBodyX = this.getPosBody().getX();
+       int posBodyY = this.getPosBody().getY();
+       int posTeteX = this.getPosTete().getX();
+       int posTeteY = this.getPosTete().getY();
+       
+       // Ajouter des conditions si on est aux limites de l'écran
+       
+       if (this.direction == "S") {
+    		    posBodyX += 1;
+    		    posTeteX +=1;
+    		    this.setPosBody(new Position(posBodyX, posBodyY));
+    		    this.setPosTete(new Position(posTeteX, posTeteY));
+       }
+       else if (this.direction == "E") {
+    		   posBodyY += 1;
+    		   posTeteY += 1;
+    		   this.setPosBody(new Position(posBodyX, posBodyY));
+    		   this.setPosTete(new Position(posTeteX, posTeteY));
+       }
+       else if (this.direction == "O") {
+    		   posBodyY -= 1;
+    		   posTeteY -= 1;
+    		   this.setPosBody(new Position(posBodyX, posBodyY));
+    		   this.setPosTete(new Position(posTeteX, posTeteY));
+       }
+       else if (this.direction == "N") {
+    		    posBodyX -= 1;
+    		    posTeteX -=1;
+    		    this.setPosBody(new Position(posBodyX, posBodyY));
+    		    this.setPosTete(new Position(posTeteX, posTeteY));
+       }
 
     }
 
@@ -30,7 +64,37 @@ public class VoyageurSimuler extends AbstractVoyageur {
      */
     @Override
     protected void backward() {
-        // TODO Auto-generated method stub
+        int posBodyX = this.getPosBody().getX();
+        int posBodyY = this.getPosBody().getY();
+        int posTeteX = this.getPosTete().getX();
+        int posTeteY = this.getPosTete().getY();
+        
+        // Ajouter des conditions si on est aux limites de l'écran
+        
+        if (this.direction == "S") {
+     	   posBodyX -= 1;
+     	   posTeteX -= 1;
+     	   this.setPosBody(new Position(posBodyX, posBodyY));
+     	   this.setPosTete(new Position(posTeteX, posTeteY));
+        }
+        else if (this.direction == "E") {
+     	   posBodyY -= 1;
+     	   posTeteY -= 1;
+     	   this.setPosBody(new Position(posBodyX, posBodyY));
+     	   this.setPosTete(new Position(posTeteX, posTeteY));
+        }
+        else if (this.direction == "O") {
+     	   posBodyY += 1;
+     	   posTeteY += 1;
+     	   this.setPosBody(new Position(posBodyX, posBodyY));
+     	   this.setPosTete(new Position(posTeteX, posTeteY));
+        }
+        else if (this.direction == "N") {
+     	   posBodyX += 1;
+     	   posTeteX +=1;
+     	   this.setPosBody(new Position(posBodyX, posBodyY));
+     	   this.setPosTete(new Position(posTeteX, posTeteY));
+        }
 
     }
 
@@ -39,7 +103,33 @@ public class VoyageurSimuler extends AbstractVoyageur {
      */
     @Override
     protected void left() {
-        // TODO Auto-generated method stub
+        int posTeteX = this.getPosTete().getX();
+        int posTeteY = this.getPosTete().getY();
+        
+        if (this.direction == "N") {
+           posTeteY -= 1;
+     	   posTeteX += 1;
+     	   this.setPosTete(new Position(posTeteX, posTeteY));
+     	   this.direction = "O";
+        }
+        else if (this.direction == "S") {
+           posTeteY += 1;
+      	   posTeteX -= 1;
+      	   this.setPosTete(new Position(posTeteX, posTeteY));
+      	   this.direction = "E";	
+        }
+        else if (this.direction == "E") {
+           posTeteY -= 1;
+      	   posTeteX -= 1;
+      	   this.setPosTete(new Position(posTeteX, posTeteY));
+      	   this.direction = "N";
+        }
+        else if (this.direction == "O") {
+           posTeteY += 1;
+      	   posTeteX += 1;
+      	   this.setPosTete(new Position(posTeteX, posTeteY));
+      	   this.direction = "S";
+        }
     }
 
     /* (non-Javadoc)
@@ -47,6 +137,32 @@ public class VoyageurSimuler extends AbstractVoyageur {
      */
     @Override
     protected void right() {
-        // TODO Auto-generated method stub
+        int posTeteX = this.getPosTete().getX();
+        int posTeteY = this.getPosTete().getY();
+        
+        if (this.direction == "N") {
+           posTeteY += 1;
+     	   posTeteX += 1;
+     	   this.setPosTete(new Position(posTeteX, posTeteY));
+     	   this.direction = "E";
+        }
+        else if (this.direction == "S") {
+           posTeteY -= 1;
+      	   posTeteX -= 1;
+      	   this.setPosTete(new Position(posTeteX, posTeteY));
+      	   this.direction = "O";	
+        }
+        else if (this.direction == "E") {
+           posTeteY -= 1;
+      	   posTeteX += 1;
+      	   this.setPosTete(new Position(posTeteX, posTeteY));
+      	   this.direction = "S";
+        }
+        else if (this.direction == "O") {
+           posTeteY += 1;
+      	   posTeteX -= 1;
+      	   this.setPosTete(new Position(posTeteX, posTeteY));
+      	   this.direction = "N";
+        }
     }
 }
