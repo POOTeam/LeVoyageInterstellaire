@@ -60,8 +60,7 @@ public class Voyage extends AbstractVoyage {
      */
     @Override
     public void lancement() {
-        // TODO Auto-generated method stub
-
+        
     }
 
     /* (non-Javadoc)
@@ -70,8 +69,16 @@ public class Voyage extends AbstractVoyage {
     @Override
     public void lancementSimuler() {
         // TODO Auto-generated method stub
+    	
+    	this.deplacementXY(4,3);
+    	this.deplacementXY(1,2);
+    	this.deplacementXY(8, 9);
+    	this.deplacementXY(8, 1);
+    	this.deplacementXY(8, 9);
+
+    	
+    	/*
     	AbstractVoyageur _simulatedVoyageur = this.getSimulatedvoyageur();
-        
 		for (int i=0; i < 4; i++) {
 	        afficheEcran();
 	        wait(500);
@@ -85,5 +92,83 @@ public class Voyage extends AbstractVoyage {
 	        afficheEcran();
 	        wait(500);
 		}
+		*/
+    }
+    
+    public void deplacementXY(int X, int Y) {
+    	
+    	AbstractVoyageur _simulatedVoyageur = this.getSimulatedvoyageur();
+    	int posBodyX = _simulatedVoyageur.getPosBody().getX();
+    	int posBodyY = _simulatedVoyageur.getPosBody().getY();
+    	String direction = _simulatedVoyageur.getDirection();
+    	
+    	int distanceX = X - posBodyX;
+    	int distanceY = Y - posBodyY;
+    	
+    	if (direction == "S" || direction == "N") {
+    		if ((direction == "S" && distanceX < 0) || (direction == "N" && distanceX > 0) && distanceX != 0) {
+        		for (int distanceParcourueX = 0 ; distanceParcourueX < Math.abs(distanceX) ; distanceParcourueX++) {
+        			_simulatedVoyageur.goBackward();
+        			afficheEcran();
+        			wait(500);
+        		}
+    		}
+    		for (int distanceParcourueX = 0 ; distanceParcourueX < Math.abs(distanceX) ; distanceParcourueX++) {
+    			_simulatedVoyageur.goForward();
+    			afficheEcran();
+    			wait(500);
+    		}
+    		if ((distanceY < 0 && direction == "N") || (distanceY > 0 && direction == "S") && distanceY != 0) {
+    			_simulatedVoyageur.turnLeft();
+    			afficheEcran();
+    			wait(500);
+    		}
+    		else if (distanceY != 0) {
+    			_simulatedVoyageur.turnRight();
+    			afficheEcran();
+    			wait(500);
+    		}
+    		for (int distanceParcourueY = 0 ; distanceParcourueY < Math.abs(distanceY) ; distanceParcourueY++) {
+    			_simulatedVoyageur.goForward();
+    			afficheEcran();
+    			wait(500);
+    		}
+    	}
+    	
+    	
+    	else {
+    		if ((distanceY < 0 && direction == "O") || (distanceY > 0 && direction == "E") && distanceY != 0) {
+        		for (int distanceParcourueY = 0 ; distanceParcourueY < Math.abs(distanceY) ; distanceParcourueY++) {
+        			_simulatedVoyageur.goForward();
+        			afficheEcran();
+        			wait(500);
+        		}
+    		}
+    		else {
+        		for (int distanceParcourueY = 0 ; distanceParcourueY < Math.abs(distanceY) ; distanceParcourueY++) {
+        			_simulatedVoyageur.goBackward();
+        			afficheEcran();
+        			wait(500);
+        		}
+    		}
+    		
+    		if ((distanceX < 0 && direction == "O") || (distanceX > 0 && direction == "E") && distanceX != 0) {
+    			_simulatedVoyageur.turnRight();
+    			afficheEcran();
+    			wait(500);
+    		}
+    		else if (distanceX != 0) {
+    			_simulatedVoyageur.turnLeft();
+    			afficheEcran();
+    			wait(500);
+    		}
+    		for (int distanceParcourueX = 0 ; distanceParcourueX < Math.abs(distanceX) ; distanceParcourueX++) {
+    			_simulatedVoyageur.goForward();
+    			afficheEcran();
+    			wait(500);
+    		}
+    	}
+    	System.out.println("On est arrive mon Capitaine !");
+    	wait(1000);
     }
 }

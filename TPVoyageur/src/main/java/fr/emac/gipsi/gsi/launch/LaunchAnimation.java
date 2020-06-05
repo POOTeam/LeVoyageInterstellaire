@@ -4,6 +4,7 @@
 package fr.emac.gipsi.gsi.launch;
 
 import fr.emac.gipsi.gsi.animation.AbstractAnimation;
+import fr.emac.gipsi.gsi.animation.AnimationByCentre;
 import fr.emac.gipsi.gsi.animation.AnimationByLigne;
 import fr.emac.gipsi.gsi.animation.AnimationByColumn;
 import fr.emac.gipsi.gsi.animation.AnimationFlash;
@@ -28,7 +29,7 @@ public class LaunchAnimation {
 
 		aa.wait(1000);
 		
-		AbstractAnimation ab = new AnimationByLigne();
+		AbstractAnimation ab = new AnimationByCentre();
 		
 		ab.setEcranDeb(ListScreen.second());
 		ab.setEcranFin(ListScreen.first());
