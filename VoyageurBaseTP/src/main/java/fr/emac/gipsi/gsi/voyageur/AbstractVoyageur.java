@@ -133,7 +133,7 @@ public abstract class AbstractVoyageur {
     public void setPosTete(Position posTete) {
         this.posTete = posTete;
         // this.posBody = new Position(posTete.getX(), posTete.getY() - 1);
-        System.out.println(posBody.toString() + " " + posTete.toString());
+        //System.out.println(posBody.toString() + " " + posTete.toString());
     }
 
 
