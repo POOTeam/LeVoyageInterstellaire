@@ -3,6 +3,7 @@
  */
 package fr.emac.gipsi.gsi.voyage;
 
+import fr.emac.gipsi.gsi.screen.Screen;
 import fr.emac.gipsi.gsi.voyageur.AbstractVoyageur;
 
 import java.util.ArrayList;
@@ -20,11 +21,15 @@ public class Voyage extends AbstractVoyage {
 	
 	protected ArrayList<Planete> listPlanete;
 	protected AbstractVoyageur simulatedVoyageur;
+	protected ArrayList<Planete> listPlanetePhotographie;
 	
 	
     public Voyage(ArrayList<Planete> listPlanete, AbstractVoyageur simulatedVoyageur) {
         super(listPlanete, simulatedVoyageur);
-        // TODO Auto-generated constructor stub
+        
+        this.listPlanete = listPlanete;
+        this.simulatedVoyageur = simulatedVoyageur;
+        this.listPlanetePhotographie = new ArrayList<Planete> ();
     }
 
     /**
@@ -69,15 +74,22 @@ public class Voyage extends AbstractVoyage {
     @Override
     public void lancementSimuler() {
         // TODO Auto-generated method stub
+		System.out.println("Debut");
+    	this.prendrePhoto(this.listPlanete.get(0));
+    	wait(500);
+    	System.out.println("Premier appel " + this.listPlanetePhotographie);
+    	this.prendrePhoto(this.listPlanete.get(0));
+    	System.out.println(" Deuxieme appel " + this.listPlanetePhotographie);
+
     	
+    	/*
+
     	this.deplacementXY(4,3);
     	this.deplacementXY(1,2);
     	this.deplacementXY(8, 9);
     	this.deplacementXY(8, 1);
-    	this.deplacementXY(8, 9);
-
+    	this.deplacementXY(8, 9);    	
     	
-    	/*
     	AbstractVoyageur _simulatedVoyageur = this.getSimulatedvoyageur();
 		for (int i=0; i < 4; i++) {
 	        afficheEcran();
@@ -171,4 +183,39 @@ public class Voyage extends AbstractVoyage {
     	System.out.println("On est arrive mon Capitaine !");
     	wait(1000);
     }
+
+
+
+    
+    
+    public void prendrePhoto(Planete planeteActuelle) {
+    	ArrayList<Planete> _listVisibilite = planeteActuelle.getListVisibilite();
+    	AbstractVoyageur _simulatedVoyageur = this.getSimulatedvoyageur();    	
+    	
+		if (_listVisibilite.size() == 0) {
+			System.out.println("Au secours je peux pas partir");
+		}
+		
+		else if (listPlanetePhotographie.size() == 0) {
+    		listPlanetePhotographie.add(_listVisibilite.get(0));
+    	}
+
+		for (int j = 0 ; j < listPlanetePhotographie.size() ; j++ ) {
+
+	    	for (int i = 0; i < _listVisibilite.size(); i++) {
+    			
+    	    	if (!(listPlanetePhotographie.contains(_listVisibilite.get(i)))) {
+    				_simulatedVoyageur.takePicture(listPlanetePhotographie.get(j));
+    				listPlanetePhotographie.add(_listVisibilite.get(i));
+    				System.out.println("J'ai pris une photo chef");
+    			}
+    		}
+    	}
+    }
+
+
+
+
+
+
 }
