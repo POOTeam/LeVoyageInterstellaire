@@ -21,12 +21,8 @@ public class Voyage extends AbstractVoyage {
 	protected ArrayList<Planete> listPlanete;
 	protected AbstractVoyageur simulatedVoyageur;
 	protected ArrayList<Planete> listPlanetePhotographie;
-<<<<<<< HEAD
-	protected ArrayList<Planete> listCulsdeSac;
-=======
 	protected ArrayList<Planete> listPlaneteCreusee;
 	protected ArrayList<Planete> listPlanetePrelevee;
->>>>>>> 7dbd578ba8340961a8f8d32fa8df69f8a0d8fec6
 	
 	
     public Voyage(ArrayList<Planete> listPlanete, AbstractVoyageur simulatedVoyageur) {
@@ -35,12 +31,8 @@ public class Voyage extends AbstractVoyage {
         this.listPlanete = listPlanete;
         this.simulatedVoyageur = simulatedVoyageur;
         this.listPlanetePhotographie = new ArrayList<Planete> ();
-<<<<<<< HEAD
-        this.listCulsdeSac = new ArrayList<Planete> ();
-=======
         this.listPlaneteCreusee = new ArrayList<Planete> ();
         this.listPlanetePrelevee = new ArrayList<Planete> ();
->>>>>>> 7dbd578ba8340961a8f8d32fa8df69f8a0d8fec6
     }
 
     /**
@@ -84,16 +76,8 @@ public class Voyage extends AbstractVoyage {
      */
     @Override
     public void lancementSimuler() {
-<<<<<<< HEAD
-        
-    	this.createListDebutCulsdeSac();
-    	System.out.println(this.listCulsdeSac);
-    	
-    	/*
-=======
         // TODO Auto-generated method stub
 		/*
->>>>>>> 7dbd578ba8340961a8f8d32fa8df69f8a0d8fec6
 		System.out.println("Debut");
     	this.prendrePhoto(this.listPlanete.get(0));
     	wait(500);
@@ -101,8 +85,6 @@ public class Voyage extends AbstractVoyage {
     	this.prendrePhoto(this.listPlanete.get(0));
     	System.out.println(" Deuxieme appel " + this.listPlanetePhotographie);
     	*/
-<<<<<<< HEAD
-=======
 
     	/*
     	System.out.println("Debut");
@@ -122,11 +104,11 @@ public class Voyage extends AbstractVoyage {
     	System.out.println(" Deuxieme appel " + this.listPlanetePrelevee);
     	*/
     	
->>>>>>> 7dbd578ba8340961a8f8d32fa8df69f8a0d8fec6
     	
     	//this.calculDistance(this.listPlanete.get(0), this.listPlanete.get(1));
     	System.out.println("distance planete1/planete2 :"+ this.calculDistance(this.listPlanete.get(0), this.listPlanete.get(1)));
     	/*
+
     	this.deplacementXY(4,3);
     	this.deplacementXY(1,2);
     	this.deplacementXY(8, 9);
@@ -148,37 +130,6 @@ public class Voyage extends AbstractVoyage {
 	        wait(500);
 		}
 		*/
-    }
-    
-    public void createListDebutCulsdeSac() {
-    	for (int i = 0; i < this.listPlanete.size(); i++) {
-    		if (listPlanete.get(i).getListAccessibilite().size() == 1) {
-    			Planete debutCulsdeSac = listPlanete.get(i);
-    			Planete voisinProche = debutCulsdeSac.getListAccessibilite().get(0);
-    			Planete planetePrecedente = new Planete();
-    			
-    			while(voisinProche.getListAccessibilite().size() == 2) {
-    				planetePrecedente = debutCulsdeSac;
-    				debutCulsdeSac = voisinProche;
-    				if (debutCulsdeSac.getListAccessibilite().get(0).getPos() != planetePrecedente.getPos()) {
-    					voisinProche = debutCulsdeSac.getListAccessibilite().get(0);
-    				}
-    				else {
-    					voisinProche = debutCulsdeSac.getListAccessibilite().get(1);
-    				}
-    			}
-    			this.listCulsdeSac.add(debutCulsdeSac);
-    		}
-    	}
-    }
-    
-    public void deplacementPlanete(Planete planete) {
-    	
-    	int posX = planete.getPos().getX();
-    	int posY = planete.getPos().getY();
-    	
-    	this.deplacementXY(posX, posY);
-    	
     }
     
     public void deplacementXY(int X, int Y) {
@@ -257,18 +208,21 @@ public class Voyage extends AbstractVoyage {
     	System.out.println("On est arrive mon Capitaine !");
     	wait(1000);
     }
-     
+
+
+
+    
+    
     public void prendrePhoto(Planete planeteActuelle) {
     	ArrayList<Planete> _listVisibilite = planeteActuelle.getListVisibilite();
     	AbstractVoyageur _simulatedVoyageur = this.getSimulatedvoyageur();    	
     	
 		if (_listVisibilite.size() == 0) {
-			System.out.println("Je vois rien Chef");
+			System.out.println("Au secours je peux pas partir");
 		}
 		
 		else if (listPlanetePhotographie.size() == 0) {
     		listPlanetePhotographie.add(_listVisibilite.get(0));
-			System.out.println("J'ai pris une photo Chef");
     	}
 
 		for (int j = 0 ; j < listPlanetePhotographie.size() ; j++ ) {
@@ -278,7 +232,7 @@ public class Voyage extends AbstractVoyage {
     	    	if (!(listPlanetePhotographie.contains(_listVisibilite.get(i)))) {
     				_simulatedVoyageur.takePicture(listPlanetePhotographie.get(j));
     				listPlanetePhotographie.add(_listVisibilite.get(i));
-    				System.out.println("J'ai pris une photo Chef");
+    				System.out.println("J'ai pris une photo chef");
     			}
     		}
     	}
@@ -326,12 +280,12 @@ public class Voyage extends AbstractVoyage {
     	}
     }
     
-    public double calculDistance(Planete planete1, Planete planete2) {
+    public int calculDistance(Planete planete1, Planete planete2) {
     	int posXplanete1 = planete1.getPos().getX();
     	int posYplanete1 = planete1.getPos().getY();
     	int posXplanete2 = planete2.getPos().getX();
     	int posYplanete2 = planete2.getPos().getY();
-    	double distance = posXplanete2-posXplanete1+posYplanete2-posYplanete1;
+    	int distance = posXplanete2-posXplanete1+posYplanete2-posYplanete1;
     	return(distance);
     }
 }
