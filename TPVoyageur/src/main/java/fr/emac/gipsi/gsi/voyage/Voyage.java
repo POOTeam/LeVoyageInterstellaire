@@ -3,7 +3,6 @@
  */
 package fr.emac.gipsi.gsi.voyage;
 
-import fr.emac.gipsi.gsi.screen.Screen;
 import fr.emac.gipsi.gsi.voyageur.AbstractVoyageur;
 
 import java.util.ArrayList;
@@ -22,6 +21,8 @@ public class Voyage extends AbstractVoyage {
 	protected ArrayList<Planete> listPlanete;
 	protected AbstractVoyageur simulatedVoyageur;
 	protected ArrayList<Planete> listPlanetePhotographie;
+	protected ArrayList<Planete> listPlaneteCreusee;
+	protected ArrayList<Planete> listPlanetePrelevee;
 	
 	
     public Voyage(ArrayList<Planete> listPlanete, AbstractVoyageur simulatedVoyageur) {
@@ -30,6 +31,8 @@ public class Voyage extends AbstractVoyage {
         this.listPlanete = listPlanete;
         this.simulatedVoyageur = simulatedVoyageur;
         this.listPlanetePhotographie = new ArrayList<Planete> ();
+        this.listPlaneteCreusee = new ArrayList<Planete> ();
+        this.listPlanetePrelevee = new ArrayList<Planete> ();
     }
 
     /**
@@ -74,14 +77,36 @@ public class Voyage extends AbstractVoyage {
     @Override
     public void lancementSimuler() {
         // TODO Auto-generated method stub
+		/*
 		System.out.println("Debut");
     	this.prendrePhoto(this.listPlanete.get(0));
     	wait(500);
     	System.out.println("Premier appel " + this.listPlanetePhotographie);
     	this.prendrePhoto(this.listPlanete.get(0));
     	System.out.println(" Deuxieme appel " + this.listPlanetePhotographie);
+    	*/
 
+    	/*
+    	System.out.println("Debut");
+    	this.prendEchantillonSol(this.listPlanete.get(0));
+    	wait(500);
+    	System.out.println("Premier appel " + this.listPlaneteCreusee);
+    	this.prendEchantillonSol(this.listPlanete.get(0));
+    	System.out.println(" Deuxieme appel " + this.listPlaneteCreusee);
+    	*/
     	
+    	/*
+    	System.out.println("Debut");
+    	this.prendEchantillonRoche(this.listPlanete.get(0));
+    	wait(500);
+    	System.out.println("Premier appel " + this.listPlanetePrelevee);
+    	this.prendEchantillonRoche(this.listPlanete.get(0));
+    	System.out.println(" Deuxieme appel " + this.listPlanetePrelevee);
+    	*/
+    	
+    	
+    	//this.calculDistance(this.listPlanete.get(0), this.listPlanete.get(1));
+    	System.out.println("distance planete1/planete2 :"+ this.calculDistance(this.listPlanete.get(0), this.listPlanete.get(1)));
     	/*
 
     	this.deplacementXY(4,3);
@@ -213,9 +238,54 @@ public class Voyage extends AbstractVoyage {
     	}
     }
 
+    
+    
+    public void prendEchantillonSol(Planete planeteActuelle) {
+    	AbstractVoyageur _simulatedVoyageur = this.getSimulatedvoyageur();
+    	if ((listPlaneteCreusee.size() == 0)&&(planeteActuelle.getEchantillonSol()!=null)) {
+    		listPlaneteCreusee.add(planeteActuelle);
+    		System.out.println("J'ai un bloc de dirt Chef");
+    	}
+    	for(int i=0;i<listPlaneteCreusee.size();i++) {
+    		if(planeteActuelle.getEchantillonSol()!=null) {
+    			if(!(listPlaneteCreusee.contains(planeteActuelle))) {
+    				listPlaneteCreusee.add(planeteActuelle);
+    				_simulatedVoyageur.takeEchantillonSol(listPlaneteCreusee.get(i));
+    				System.out.println("J'ai un bloc de dirt Chef");
+    			}
+    		}
+    		else {
+    			System.out.println("Y a pas de sol Chef");
+    		}
+    	}
+    }
 
-
-
-
-
+    public void prendEchantillonRoche(Planete planeteActuelle) {
+    	AbstractVoyageur _simulatedVoyageur = this.getSimulatedvoyageur();
+    	if ((listPlanetePrelevee.size() == 0)&&(planeteActuelle.getEchantillonRoche()!=null)) {
+    		listPlanetePrelevee.add(planeteActuelle);
+    		System.out.println("J'ai un caillou Chef");
+    	}
+    	for(int i=0;i<listPlanetePrelevee.size();i++) {
+    		if(planeteActuelle.getEchantillonRoche()!=null) {
+    			if(!(listPlanetePrelevee.contains(planeteActuelle))) {
+    				listPlanetePrelevee.add(planeteActuelle);
+    				_simulatedVoyageur.takeEchantillonRoche(listPlanetePrelevee.get(i));
+    				System.out.println("J'ai un caillou Chef");
+    			}
+    		}
+    		else {
+    			System.out.println("Y a pas de caillou Chef");
+    		}
+    	}
+    }
+    
+    public double calculDistance(Planete planete1, Planete planete2) {
+    	int posXplanete1 = planete1.getPos().getX();
+    	int posYplanete1 = planete1.getPos().getY();
+    	int posXplanete2 = planete2.getPos().getX();
+    	int posYplanete2 = planete2.getPos().getY();
+    	double distance = posXplanete2-posXplanete1+posYplanete2-posYplanete1;
+    	return(distance);
+    }
 }
