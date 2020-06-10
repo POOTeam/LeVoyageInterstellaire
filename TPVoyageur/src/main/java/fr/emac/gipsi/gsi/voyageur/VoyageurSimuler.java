@@ -24,7 +24,6 @@ public class VoyageurSimuler extends AbstractVoyageur {
     @Override
     protected void forward() {
     	
-       System.out.println("En AVANT !");
        int posBodyX = this.getPosBody().getX();
        int posBodyY = this.getPosBody().getY();
        int posTeteX = this.getPosTete().getX();

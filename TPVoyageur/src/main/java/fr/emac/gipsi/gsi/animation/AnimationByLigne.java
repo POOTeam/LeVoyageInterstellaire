@@ -1,5 +1,6 @@
 package fr.emac.gipsi.gsi.animation;
 
+
 import fr.emac.gipsi.gsi.screen.Screen;
 
 public class AnimationByLigne extends AbstractAnimation {
@@ -47,4 +48,8 @@ public class AnimationByLigne extends AbstractAnimation {
 		this.showScreen(ecranInt);
 	}
 }
+<<<<<<< HEAD
 >>>>>>> f569a024412e4b2d77e1cc44b7e523dc453be32b
+=======
+
+>>>>>>> 24129ffad4a748505974698eb84eca0229c4598f
