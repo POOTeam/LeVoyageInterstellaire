@@ -2,6 +2,7 @@ package fr.emac.gipsi.gsi.launch;
 
 import java.util.ArrayList;
 
+import fr.emac.gipsi.gsi.ecran.ListScreen;
 import fr.emac.gipsi.gsi.screen.Screen;
 import fr.emac.gipsi.gsi.voyage.Planete;
 import fr.emac.gipsi.gsi.voyage.Voyage;
@@ -15,8 +16,8 @@ public class LaunchVoyage {
 
         Planete p1 = new Planete();
         p1.setColorName("DarkSalmon");
-        p1.setEchantillonRoche(new Screen());
-        p1.setEchantillonSol(new Screen());
+        p1.setEchantillonRoche(ListScreen.gruiki());
+        p1.setEchantillonSol(ListScreen.gruiki());
         p1.setRayon(0);
         p1.getPos().setX(2);
         p1.getPos().setY(2);
