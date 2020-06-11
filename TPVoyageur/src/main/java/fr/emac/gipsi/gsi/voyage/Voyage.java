@@ -22,12 +22,7 @@ public class Voyage extends AbstractVoyage {
 	protected ArrayList<Planete> listPlanete;
 	protected AbstractVoyageur simulatedVoyageur;
 	protected ArrayList<Planete> listPlanetePhotographie;
-<<<<<<< HEAD
-	protected ArrayList<Planete> listPlaneteCreusee;
-	protected ArrayList<Planete> listPlanetePrelevee;
-=======
 	protected ArrayList<Planete> listCulsdeSac;
-<<<<<<< HEAD
 	protected ArrayList<Planete> listPlaneteCreusee;
 	protected ArrayList<Planete> listPlanetePrelevee;
 	protected ArrayList<ArrayList<Planete>> listListAccessibilite;
@@ -36,9 +31,6 @@ public class Voyage extends AbstractVoyage {
 	public static ArrayList<ArrayList<Planete>> listChemin;
 	
 
-=======
->>>>>>> c82e92d6cfc30fe1ff77bd603f1fab5b3e910c42
->>>>>>> 12b1b43e40f2d781b5040b7bb8f777653631658a
 	
 	
     public Voyage(ArrayList<Planete> listPlanete, AbstractVoyageur simulatedVoyageur) {
@@ -47,18 +39,10 @@ public class Voyage extends AbstractVoyage {
         this.listPlanete = listPlanete;
         this.simulatedVoyageur = simulatedVoyageur;
         this.listPlanetePhotographie = new ArrayList<Planete> ();
-<<<<<<< HEAD
-        this.listPlaneteCreusee = new ArrayList<Planete> ();
-        this.listPlanetePrelevee = new ArrayList<Planete> ();
-=======
         this.listCulsdeSac = new ArrayList<Planete> ();
-<<<<<<< HEAD
     	this.listPlaneteCreusee = new ArrayList<Planete> ();
     	this.listPlanetePrelevee = new ArrayList<Planete> ();
     	this.listListAccessibilite = new ArrayList<ArrayList<Planete>> ();
-=======
->>>>>>> c82e92d6cfc30fe1ff77bd603f1fab5b3e910c42
->>>>>>> 12b1b43e40f2d781b5040b7bb8f777653631658a
     }
 
     /**
@@ -105,7 +89,6 @@ public class Voyage extends AbstractVoyage {
      */
     @Override
     public void lancementSimuler() {
-<<<<<<< HEAD
     	
     	this.lancement();
     	this.trouverPlaneteSuivante(listPlanete.get(2));
@@ -121,18 +104,8 @@ public class Voyage extends AbstractVoyage {
     	
     	
     	
-=======
-<<<<<<< HEAD
-        // TODO Auto-generated method stub
-		/*
-=======
-        
-    	this.createListDebutCulsdeSac();
-    	System.out.println(this.listCulsdeSac);
->>>>>>> 12b1b43e40f2d781b5040b7bb8f777653631658a
     	
     	/*
->>>>>>> c82e92d6cfc30fe1ff77bd603f1fab5b3e910c42
 		System.out.println("Debut");
     	this.prendrePhoto(this.listPlanete.get(0));
     	wait(500);
@@ -140,35 +113,8 @@ public class Voyage extends AbstractVoyage {
     	this.prendrePhoto(this.listPlanete.get(0));
     	System.out.println(" Deuxieme appel " + this.listPlanetePhotographie);
     	*/
-<<<<<<< HEAD
-
-    	/*
-    	System.out.println("Debut");
-    	this.prendEchantillonSol(this.listPlanete.get(0));
-    	wait(500);
-    	System.out.println("Premier appel " + this.listPlaneteCreusee);
-    	this.prendEchantillonSol(this.listPlanete.get(0));
-    	System.out.println(" Deuxieme appel " + this.listPlaneteCreusee);
-    	*/
     	
     	/*
-    	System.out.println("Debut");
-    	this.prendEchantillonRoche(this.listPlanete.get(0));
-    	wait(500);
-    	System.out.println("Premier appel " + this.listPlanetePrelevee);
-    	this.prendEchantillonRoche(this.listPlanete.get(0));
-    	System.out.println(" Deuxieme appel " + this.listPlanetePrelevee);
-    	*/
-    	
-    	
-    	//this.calculDistance(this.listPlanete.get(0), this.listPlanete.get(1));
-    	System.out.println("distance planete1/planete2 :"+ this.calculDistance(this.listPlanete.get(0), this.listPlanete.get(1)));
-    	/*
-
-=======
-    	
-    	/*
->>>>>>> c82e92d6cfc30fe1ff77bd603f1fab5b3e910c42
     	this.deplacementXY(4,3);
     	this.deplacementXY(1,2);
     	this.deplacementXY(8, 9);
@@ -192,7 +138,6 @@ public class Voyage extends AbstractVoyage {
 		*/
     }
     
-<<<<<<< HEAD
     public void trouverPlaneteSuivante(Planete planeteActuelle) {
     	// Fonction qui recherche la prochaine destination du voyageur et le prochain chemin jusqu a cette destination
     	
@@ -243,36 +188,36 @@ public class Voyage extends AbstractVoyage {
     	ArrayList<Planete> planetesVoisines = planeteActuelle.getListAccessibilite();
     	ArrayList<Planete> _listAccessibilite;
     	
+    	// Si on a jamais ete sur la planete ou on est en ce moment
     	if (!alreadyVisit.contains(planeteActuelle)) {
-    		/*
-        	System.out.println("a");
-    		System.out.println(cheminEnCours);
-        	System.out.println("");
-        	*/
+    		
+    		// Creation de la deep copie de cheminEnCours
         	ArrayList<Planete> cheminAAjouter = new ArrayList<Planete>();
-        	
         	for (int i = 0; i < cheminEnCours.size(); i++) {
             	cheminAAjouter.add(cheminEnCours.get(i));
         	}
         	
+        	// Ajout du chemin et de la distance du chemin a deux variables globales
     		listChemin.add(cheminAAjouter);
     		listDistance.add(distEnCours);
     		
+    		// Le voyageur retourne a la planete precedente,
+    		// il enleve a distEnCours la distance entre les deux planetes
+    		// il supprime la liaison entre les deux planetes
 			distEnCours-=calculDistance(planeteActuelle, cheminEnCours.get(cheminEnCours.size()-1));
 			cheminEnCours.get(cheminEnCours.size()-1).getListAccessibilite().remove(planeteActuelle);
 			cheminEnCours.remove(planeteActuelle);
-			/*
-        	System.out.println("b");
-    		System.out.println(cheminEnCours);
-        	System.out.println("");
-        	*/
     	}
     	
     	else {
+    		
+    		// On enleve les planetes deja sur le parcours de la liste des voisins
     		for (int i = 0; i < cheminEnCours.size(); i++) {
     			planetesVoisines.remove(cheminEnCours.get(i));
     		}
+    		// S il reste des voisin a la planete actuelle
     		if (planetesVoisines != null) {
+    			// On relance l algo avec un cheminEnCours et une distEnCours modifiee
     			for (int j = 0; j < planetesVoisines.size(); j++) {
     				cheminEnCours.add(planetesVoisines.get(j));
     				distEnCours += calculDistance(planeteActuelle, planetesVoisines.get(j));
@@ -280,6 +225,10 @@ public class Voyage extends AbstractVoyage {
     				trouverPlanetePlusProche(planetesVoisines.get(j), alreadyVisit, cheminEnCours, distEnCours);
     			}
     		}
+    		// Sinon le voyageur retourne a la planete precedente,
+    		// il enleve a distEnCours la distance entre les deux planetes
+    		// il supprime la liaison entre les deux planetes
+    		// et relance l algo de recherche depuis la planete precedente
     		else {
     			distEnCours-=calculDistance(planeteActuelle, cheminEnCours.get(cheminEnCours.size()-1));
     			cheminEnCours.get(cheminEnCours.size()-1).getListAccessibilite().remove(planeteActuelle);
@@ -296,6 +245,8 @@ public class Voyage extends AbstractVoyage {
     
     
     public void createListListAccessibilite() {
+    	// Fonction qui creer une copie des listes d accessibilite de toutes les planetes
+    	
     	for (int i = 0; i < this.listPlanete.size(); i++) {
     		Planete planeteActuelle = listPlanete.get(i);
     		ArrayList<Planete> _listAccessibilite = planeteActuelle.getListAccessibilite();
@@ -343,8 +294,6 @@ public class Voyage extends AbstractVoyage {
     	
     }
     
-=======
->>>>>>> 12b1b43e40f2d781b5040b7bb8f777653631658a
     public void deplacementXY(int X, int Y) {
     	// Fonction qui permet de deplacer le voyageur jusqu a des coordonnees X et Y donnees
     	
@@ -392,7 +341,7 @@ public class Voyage extends AbstractVoyage {
     		}
     	}
     	
-    	// Meme principe mais pour un voyageur qui a une position initiale suivant l est ou l ouest
+    	// Meme principe mais pour un voyageur qui a une position initiale suivant E (est) ou O (ouest)
     	else {
     		if ((distanceY < 0 && direction == "O") || (distanceY > 0 && direction == "E") && distanceY != 0) {
         		for (int distanceParcourueY = 0 ; distanceParcourueY < Math.abs(distanceY) ; distanceParcourueY++) {
@@ -428,11 +377,7 @@ public class Voyage extends AbstractVoyage {
     	System.out.println("On est arrive mon Capitaine !");
     	wait(1000);
     }
-
-
-
-    
-    
+     
     public void prendrePhoto(Planete planeteActuelle) {
     	// Fonction qui permet depuis une planete de regarder et prendre en photo les planetes alentours
     	// qui ne sont pas deja dans la liste des planetes photographiees
@@ -442,12 +387,13 @@ public class Voyage extends AbstractVoyage {
     	
     	// Le voyageur ne peut pas voir d autres planetes depuis sa position actuelle 
 		if (_listVisibilite.size() == 0) {
-			System.out.println("Au secours je peux pas partir");
+			System.out.println("Je vois rien Chef");
 		}
 		
 		// Si le voyageur n a pas encore pris de photo il prend en photo la planete sur laquelle il se trouve
 		else if (listPlanetePhotographie.size() == 0) {
     		listPlanetePhotographie.add(_listVisibilite.get(0));
+			System.out.println("J'ai pris une photo Chef");
     	}
 		
 		// Pour toute les planetes de la liste des planetes photographiees
@@ -458,7 +404,7 @@ public class Voyage extends AbstractVoyage {
     	    	if (!(listPlanetePhotographie.contains(_listVisibilite.get(i)))) {
     				_simulatedVoyageur.takePicture(listPlanetePhotographie.get(j));
     				listPlanetePhotographie.add(_listVisibilite.get(i));
-    				System.out.println("J'ai pris une photo chef");
+    				System.out.println("J'ai pris une photo Chef");
     			}
     		}
     	}
@@ -484,10 +430,6 @@ public class Voyage extends AbstractVoyage {
     	}
     }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 12b1b43e40f2d781b5040b7bb8f777653631658a
     public void prendEchantillonRoche(Planete planeteActuelle) {
     	AbstractVoyageur _simulatedVoyageur = this.getSimulatedvoyageur();
     	if ((listPlanetePrelevee.size() == 0)&&(planeteActuelle.getEchantillonRoche()!=null)) {
@@ -513,19 +455,10 @@ public class Voyage extends AbstractVoyage {
     	int posYplanete1 = planete1.getPos().getY();
     	int posXplanete2 = planete2.getPos().getX();
     	int posYplanete2 = planete2.getPos().getY();
-<<<<<<< HEAD
     	int distance = Math.abs(posXplanete2-posXplanete1+posYplanete2-posYplanete1);
     	return(distance);
     }
-=======
-    	int distance = posXplanete2-posXplanete1+posYplanete2-posYplanete1;
-    	return(distance);
-    }
-=======
-
->>>>>>> 12b1b43e40f2d781b5040b7bb8f777653631658a
 
 
 
->>>>>>> c82e92d6cfc30fe1ff77bd603f1fab5b3e910c42
 }
