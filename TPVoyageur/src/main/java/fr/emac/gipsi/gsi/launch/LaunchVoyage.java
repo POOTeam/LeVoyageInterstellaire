@@ -93,9 +93,27 @@ public class LaunchVoyage {
         p7.getListAccessibilite().add(p6);
         p6.getListAccessibilite().add(p7);
         
-        
+        // 1-2
+        p2.getListVisibilite().add(p1);
         p1.getListVisibilite().add(p2);
-        p1.getListVisibilite().add(p3);
+        // 2-3
+        p2.getListVisibilite().add(p3);
+        p3.getListVisibilite().add(p2);
+        // 3-4
+        p4.getListVisibilite().add(p3);
+        p3.getListVisibilite().add(p4);
+        // 2-4
+        p4.getListVisibilite().add(p2);
+        p2.getListVisibilite().add(p4);
+        // 4-5
+        p4.getListVisibilite().add(p5);
+        p5.getListVisibilite().add(p4);
+        // 5-6
+        p5.getListVisibilite().add(p6);
+        p6.getListVisibilite().add(p5);
+        // 7-6
+        p7.getListVisibilite().add(p6);
+        p6.getListVisibilite().add(p7);
         
         
         AbstractVoyageur simulatedVoyageur = new VoyageurSimuler(); // voyageur qui va faire le parcours
