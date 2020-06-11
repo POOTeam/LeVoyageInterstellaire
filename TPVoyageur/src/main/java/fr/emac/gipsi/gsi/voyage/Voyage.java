@@ -7,6 +7,7 @@ import fr.emac.gipsi.gsi.screen.Screen;
 import fr.emac.gipsi.gsi.voyageur.AbstractVoyageur;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * @author Truptil Sebastien - sebastien.truptil@gmail.com
@@ -22,23 +23,14 @@ public class Voyage extends AbstractVoyage {
 	protected ArrayList<Planete> listPlanete;
 	protected AbstractVoyageur simulatedVoyageur;
 	protected ArrayList<Planete> listPlanetePhotographie;
-<<<<<<< HEAD
 	protected ArrayList<Planete> listPlaneteCreusee;
 	protected ArrayList<Planete> listPlanetePrelevee;
-=======
 	protected ArrayList<Planete> listCulsdeSac;
-<<<<<<< HEAD
-	protected ArrayList<Planete> listPlaneteCreusee;
-	protected ArrayList<Planete> listPlanetePrelevee;
 	protected ArrayList<ArrayList<Planete>> listListAccessibilite;
-	
+
 	public static ArrayList<Integer> listDistance;
 	public static ArrayList<ArrayList<Planete>> listChemin;
 	
-
-=======
->>>>>>> c82e92d6cfc30fe1ff77bd603f1fab5b3e910c42
->>>>>>> 12b1b43e40f2d781b5040b7bb8f777653631658a
 	
 	
     public Voyage(ArrayList<Planete> listPlanete, AbstractVoyageur simulatedVoyageur) {
@@ -47,18 +39,13 @@ public class Voyage extends AbstractVoyage {
         this.listPlanete = listPlanete;
         this.simulatedVoyageur = simulatedVoyageur;
         this.listPlanetePhotographie = new ArrayList<Planete> ();
-<<<<<<< HEAD
         this.listPlaneteCreusee = new ArrayList<Planete> ();
         this.listPlanetePrelevee = new ArrayList<Planete> ();
-=======
+
         this.listCulsdeSac = new ArrayList<Planete> ();
-<<<<<<< HEAD
-    	this.listPlaneteCreusee = new ArrayList<Planete> ();
-    	this.listPlanetePrelevee = new ArrayList<Planete> ();
+
     	this.listListAccessibilite = new ArrayList<ArrayList<Planete>> ();
-=======
->>>>>>> c82e92d6cfc30fe1ff77bd603f1fab5b3e910c42
->>>>>>> 12b1b43e40f2d781b5040b7bb8f777653631658a
+
     }
 
     /**
@@ -105,94 +92,49 @@ public class Voyage extends AbstractVoyage {
      */
     @Override
     public void lancementSimuler() {
-<<<<<<< HEAD
+
     	
     	this.lancement();
     	this.trouverPlaneteSuivante(listPlanete.get(2));
-    	System.out.println(listDistance);
-    	System.out.println("");
-    	//System.out.println(listChemin);
-    	for (int i = 0; i < listChemin.size(); i++) {
-        	System.out.println("");
-        	System.out.println(i);
-        	System.out.println("");
-        	System.out.println(listChemin.get(i));
-    	}
+    	this.parcourirPlanetes();
     	
-    	
-    	
-=======
-<<<<<<< HEAD
-        // TODO Auto-generated method stub
-		/*
-=======
-        
-    	this.createListDebutCulsdeSac();
-    	System.out.println(this.listCulsdeSac);
->>>>>>> 12b1b43e40f2d781b5040b7bb8f777653631658a
-    	
-    	/*
->>>>>>> c82e92d6cfc30fe1ff77bd603f1fab5b3e910c42
-		System.out.println("Debut");
-    	this.prendrePhoto(this.listPlanete.get(0));
-    	wait(500);
-    	System.out.println("Premier appel " + this.listPlanetePhotographie);
-    	this.prendrePhoto(this.listPlanete.get(0));
-    	System.out.println(" Deuxieme appel " + this.listPlanetePhotographie);
-    	*/
-<<<<<<< HEAD
 
-    	/*
-    	System.out.println("Debut");
-    	this.prendEchantillonSol(this.listPlanete.get(0));
-    	wait(500);
-    	System.out.println("Premier appel " + this.listPlaneteCreusee);
-    	this.prendEchantillonSol(this.listPlanete.get(0));
-    	System.out.println(" Deuxieme appel " + this.listPlaneteCreusee);
-    	*/
-    	
-    	/*
-    	System.out.println("Debut");
-    	this.prendEchantillonRoche(this.listPlanete.get(0));
-    	wait(500);
-    	System.out.println("Premier appel " + this.listPlanetePrelevee);
-    	this.prendEchantillonRoche(this.listPlanete.get(0));
-    	System.out.println(" Deuxieme appel " + this.listPlanetePrelevee);
-    	*/
-    	
-    	
-    	//this.calculDistance(this.listPlanete.get(0), this.listPlanete.get(1));
-    	System.out.println("distance planete1/planete2 :"+ this.calculDistance(this.listPlanete.get(0), this.listPlanete.get(1)));
-    	/*
+    }
 
-=======
-    	
-    	/*
->>>>>>> c82e92d6cfc30fe1ff77bd603f1fab5b3e910c42
-    	this.deplacementXY(4,3);
-    	this.deplacementXY(1,2);
-    	this.deplacementXY(8, 9);
-    	this.deplacementXY(8, 1);
-    	this.deplacementXY(8, 9);    	
-    	
+    public void parcourirPlanetes() {
     	AbstractVoyageur _simulatedVoyageur = this.getSimulatedvoyageur();
-		for (int i=0; i < 4; i++) {
-	        afficheEcran();
-	        wait(500);
-			_simulatedVoyageur.goForward();
-	        afficheEcran();
-	        wait(500);
-			_simulatedVoyageur.goBackward();
-	        afficheEcran();
-	        wait(500);
-	        _simulatedVoyageur.turnLeft();
-	        afficheEcran();
-	        wait(500);
-		}
-		*/
+    	ArrayList<Planete> _alreadyVisit = _simulatedVoyageur.getAlreadyVisit();
+    	ArrayList<Planete> cheminLePlusCourt = trouverCheminPlusCourt();
+    	int cpt = cheminLePlusCourt.size();
+    	if((cheminLePlusCourt.get(cheminLePlusCourt.size()-1).getEchantillonSol()==null)&&(cheminLePlusCourt.get(cheminLePlusCourt.size()-1).getEchantillonRoche()==null)) {
+    		cpt -= 1;
+    	}
+    	for(int i=1;i<cpt;i++) {
+    		deplacementPlanete(cheminLePlusCourt.get(i));
+    		actionsPlanete(cheminLePlusCourt.get(i));
+    	}
+		_alreadyVisit.add(cheminLePlusCourt.get(cheminLePlusCourt.size()-1));
+		System.out.println(cheminLePlusCourt.get(cheminLePlusCourt.size()-1).getListAccessibilite());
     }
     
-<<<<<<< HEAD
+    public void actionsPlanete(Planete planeteActuelle) {
+    	System.out.println(planeteActuelle.getListAccessibilite());
+        prendEchantillonRoche(planeteActuelle);
+        prendEchantillonSol(planeteActuelle);
+        prendrePhoto(planeteActuelle);
+
+    }
+    
+    public ArrayList<Planete> trouverCheminPlusCourt() {
+    	int distMin = listDistance.get(0);
+    	for(int i=1;i<listDistance.size();i++) {
+    		if(distMin>listDistance.get(i)) {
+    			distMin = listDistance.get(i);
+    		}
+    	}
+		return listChemin.get(listDistance.indexOf(distMin));
+    }
+
     public void trouverPlaneteSuivante(Planete planeteActuelle) {
     	// Fonction qui recherche la prochaine destination du voyageur et le prochain chemin jusqu a cette destination
     	
@@ -261,6 +203,9 @@ public class Voyage extends AbstractVoyage {
 			distEnCours-=calculDistance(planeteActuelle, cheminEnCours.get(cheminEnCours.size()-1));
 			cheminEnCours.get(cheminEnCours.size()-1).getListAccessibilite().remove(planeteActuelle);
 			cheminEnCours.remove(planeteActuelle);
+			_listAccessibilite = planeteActuelle.getListAccessibilite() ;
+			_listAccessibilite = listListAccessibilite.get(this.listPlanete.indexOf(planeteActuelle));
+			
 			/*
         	System.out.println("b");
     		System.out.println(cheminEnCours);
@@ -343,8 +288,7 @@ public class Voyage extends AbstractVoyage {
     	
     }
     
-=======
->>>>>>> 12b1b43e40f2d781b5040b7bb8f777653631658a
+
     public void deplacementXY(int X, int Y) {
     	// Fonction qui permet de deplacer le voyageur jusqu a des coordonnees X et Y donnees
     	
@@ -484,10 +428,7 @@ public class Voyage extends AbstractVoyage {
     	}
     }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 12b1b43e40f2d781b5040b7bb8f777653631658a
+
     public void prendEchantillonRoche(Planete planeteActuelle) {
     	AbstractVoyageur _simulatedVoyageur = this.getSimulatedvoyageur();
     	if ((listPlanetePrelevee.size() == 0)&&(planeteActuelle.getEchantillonRoche()!=null)) {
@@ -513,19 +454,10 @@ public class Voyage extends AbstractVoyage {
     	int posYplanete1 = planete1.getPos().getY();
     	int posXplanete2 = planete2.getPos().getX();
     	int posYplanete2 = planete2.getPos().getY();
-<<<<<<< HEAD
+
     	int distance = Math.abs(posXplanete2-posXplanete1+posYplanete2-posYplanete1);
     	return(distance);
     }
-=======
-    	int distance = posXplanete2-posXplanete1+posYplanete2-posYplanete1;
-    	return(distance);
-    }
-=======
-
->>>>>>> 12b1b43e40f2d781b5040b7bb8f777653631658a
-
-
-
->>>>>>> c82e92d6cfc30fe1ff77bd603f1fab5b3e910c42
 }
+
+	
