@@ -19,40 +19,40 @@ public class LaunchVoyage {
         p1.setEchantillonRoche(ListScreen.gruiki());
         p1.setEchantillonSol(ListScreen.gruiki());
         p1.setRayon(0);
-        p1.getPos().setX(2);
-        p1.getPos().setY(2);
+        p1.getPos().setX(1);
+        p1.getPos().setY(1);
         listPlanete.add(p1);
 
         Planete p2 = new Planete();
         p2.setColorName("DeepPink");
         p2.setEchantillonRoche(new Screen());
         p2.setRayon(0);
-        p2.getPos().setX(5);
-        p2.getPos().setY(5);
+        p2.getPos().setX(1);
+        p2.getPos().setY(3);
         listPlanete.add(p2);
 
         Planete p3 = new Planete();
         p3.setColorName("DeepPink");
         p3.setEchantillonRoche(new Screen());
         p3.setRayon(0);
-        p3.getPos().setX(6);
-        p3.getPos().setY(7);
+        p3.getPos().setX(1);
+        p3.getPos().setY(4);
         listPlanete.add(p3);
         
         Planete p4 = new Planete();
         p4.setColorName("DeepPink");
         p4.setEchantillonRoche(new Screen());
         p4.setRayon(0);
-        p4.getPos().setX(5);
-        p4.getPos().setY(2);
+        p4.getPos().setX(2);
+        p4.getPos().setY(5);
         listPlanete.add(p4);
         
         Planete p5 = new Planete();
         p5.setColorName("DeepPink");
         p5.setEchantillonRoche(new Screen());
         p5.setRayon(0);
-        p5.getPos().setX(3);
-        p5.getPos().setY(4);
+        p5.getPos().setX(1);
+        p5.getPos().setY(6);
         listPlanete.add(p5);
         
         Planete p6 = new Planete();
@@ -60,8 +60,16 @@ public class LaunchVoyage {
         p6.setEchantillonRoche(new Screen());
         p6.setRayon(0);
         p6.getPos().setX(1);
-        p6.getPos().setY(5);
+        p6.getPos().setY(7);
         listPlanete.add(p6);
+        
+        Planete p7= new Planete();
+        p7.setColorName("DeepPink");
+        p7.setEchantillonRoche(new Screen());
+        p7.setRayon(0);
+        p7.getPos().setX(2);
+        p7.getPos().setY(7);
+        listPlanete.add(p7);
         
         // 1-2
         p2.getListAccessibilite().add(p1);
@@ -81,6 +89,9 @@ public class LaunchVoyage {
         // 5-6
         p5.getListAccessibilite().add(p6);
         p6.getListAccessibilite().add(p5);
+        // 7-6
+        p7.getListAccessibilite().add(p6);
+        p6.getListAccessibilite().add(p7);
         
         
         p1.getListVisibilite().add(p2);
@@ -94,6 +105,12 @@ public class LaunchVoyage {
         simulatedVoyageur.getPosBody().setX(listPlanete.get(0).getPos().getX());
         simulatedVoyageur.getPosBody().setY(listPlanete.get(0).getPos().getY()-1);
         simulatedVoyageur.setDirection("E");
+        
+        simulatedVoyageur.getAlreadyVisit().add(p3);
+        simulatedVoyageur.getAlreadyVisit().add(p4);
+        
+        System.out.println(simulatedVoyageur.getAlreadyVisit());
+        System.out.println("");
         
         Voyage voyage = new Voyage(listPlanete, simulatedVoyageur);
         

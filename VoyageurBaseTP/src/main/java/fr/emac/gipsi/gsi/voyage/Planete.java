@@ -15,6 +15,7 @@ public class Planete {
 
 	private ArrayList<Planete> listVisibilite = new ArrayList<Planete>();
 	private ArrayList<Planete> listAccessibilite = new ArrayList<Planete>();
+	
 	private Screen echantillonRoche;
 	private Screen image;
 	private Screen echantillonSol;
