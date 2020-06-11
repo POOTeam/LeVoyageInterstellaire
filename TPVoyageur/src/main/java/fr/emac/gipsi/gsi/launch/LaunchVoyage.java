@@ -124,6 +124,8 @@ public class LaunchVoyage {
         simulatedVoyageur.getPosBody().setY(listPlanete.get(0).getPos().getY()-1);
         simulatedVoyageur.setDirection("E");
         
+        simulatedVoyageur.getAlreadyVisit().add(p1);
+        simulatedVoyageur.getAlreadyVisit().add(p2);
         simulatedVoyageur.getAlreadyVisit().add(p3);
         simulatedVoyageur.getAlreadyVisit().add(p4);
         

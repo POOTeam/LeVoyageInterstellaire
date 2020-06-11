@@ -115,28 +115,19 @@ public class Voyage extends AbstractVoyage {
     	ArrayList<Planete> _alreadyVisit = _simulatedVoyageur.getAlreadyVisit();
     	ArrayList<Planete> cheminLePlusCourt = trouverCheminPlusCourt();
     	
-    	System.out.println("");
-    	System.out.println(cheminLePlusCourt);
-    	System.out.println("");
     	int cpt = cheminLePlusCourt.size();
     	if((cheminLePlusCourt.get(cheminLePlusCourt.size()-1).getEchantillonSol()==null)&&(cheminLePlusCourt.get(cheminLePlusCourt.size()-1).getEchantillonRoche()==null)) {
     		cpt -= 1;
     	}
     	for(int i=1;i<cpt;i++) {
-    		System.out.println(cheminLePlusCourt.get(i));
     		deplacementPlanete(cheminLePlusCourt.get(i));
     		actionsPlanete(cheminLePlusCourt.get(i));
 
     	}
 		_alreadyVisit.add(cheminLePlusCourt.get(cheminLePlusCourt.size()-1));
-		//System.out.println(cheminLePlusCourt.get(cheminLePlusCourt.size()-1).getListAccessibilite());
     }
     
-    public void actionsPlanete(Planete planeteActuelle) {
-    	System.out.println("");
-    	System.out.println(planeteActuelle.getListAccessibilite());
-    	System.out.println("");
-    	
+    public void actionsPlanete(Planete planeteActuelle) {	
         prendEchantillonRoche(planeteActuelle);
         prendEchantillonSol(planeteActuelle);
         prendrePhoto(planeteActuelle);
