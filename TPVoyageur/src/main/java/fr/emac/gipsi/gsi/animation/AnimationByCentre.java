@@ -13,6 +13,8 @@ public class AnimationByCentre extends AbstractAnimation {
 		
 		int milieuX = (ecranInt.getLigMax())/2;
 		int milieuY = (ecranInt.getColMax())/2;
+		int ligMax = ecranFin.getLigMax();
+		int colMax = ecranFin.getColMax();
 
 		
 		System.out.println("StartAnim");
@@ -23,18 +25,17 @@ public class AnimationByCentre extends AbstractAnimation {
 					ecranInt.updateColorByXY(milieuX + lig, milieuY + ligBordure, ecranFin.getColorByXY(milieuX + lig, milieuY + ligBordure));
 					ecranInt.updateColorByXY(milieuX - lig, milieuY + ligBordure, ecranFin.getColorByXY(milieuX - lig, milieuY + ligBordure));
 					ecranInt.updateColorByXY(milieuX + lig, milieuY - ligBordure, ecranFin.getColorByXY(milieuX + lig, milieuY - ligBordure));
-					ecranInt.updateColorByXY(milieuX - lig, milieuY - ligBordure, ecranFin.getColorByXY(milieuX - lig, milieuY - ligBordure));
+					ecranInt.updateColorByXY(milieuX - lig, milieuY - ligBordure, ecranFin.getColorByXY(milieuX - lig, milieuY - ligBordure));				
 				}
 				for (int col = 0; col < ligBordure; col++) {
 					ecranInt.updateColorByXY(milieuX + ligBordure, milieuY + col, ecranFin.getColorByXY(milieuX + ligBordure, milieuY + col));
 					ecranInt.updateColorByXY(milieuX + ligBordure, milieuY - col, ecranFin.getColorByXY(milieuX + ligBordure, milieuY - col));
 					ecranInt.updateColorByXY(milieuX - ligBordure, milieuY + col, ecranFin.getColorByXY(milieuX - ligBordure, milieuY + col));
-					ecranInt.updateColorByXY(milieuX - ligBordure, milieuY - col, ecranFin.getColorByXY(milieuX - ligBordure, milieuY - col));
+					ecranInt.updateColorByXY(milieuX - ligBordure, milieuY - col, ecranFin.getColorByXY(milieuX - ligBordure, milieuY - col));	
 				}
 				this.wait(200);
-
 		}
-		this.showScreen(ecranInt);
+		this.showScreen(ecranFin);
 	}
 
 }

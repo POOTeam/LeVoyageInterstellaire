@@ -24,8 +24,8 @@ public class LaunchAnimation {
 	public static void main(String[] args) {
 		
 		AbstractAnimation aa = new AnimationDiag();
-		aa.setEcranDeb(ListScreen.first());
-		aa.setEcranFin(ListScreen.second());
+		aa.setEcranDeb(ListScreen.germinion());
+		aa.setEcranFin(ListScreen.gobu());
 		
 		aa.runAnimation();
 
@@ -33,8 +33,8 @@ public class LaunchAnimation {
 		
 		AbstractAnimation ab = new AnimationByCentre();
 		
-		ab.setEcranDeb(ListScreen.second());
-		ab.setEcranFin(ListScreen.first());
+		ab.setEcranDeb(ListScreen.gobu());
+		ab.setEcranFin(ListScreen.germinion());
 		
 		ab.runAnimation();
 		
