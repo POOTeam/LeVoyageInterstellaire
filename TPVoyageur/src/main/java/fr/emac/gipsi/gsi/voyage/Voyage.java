@@ -28,7 +28,6 @@ public class Voyage extends AbstractVoyage {
 	protected ArrayList<Planete> listPlanetePrelevee;
 
 	protected ArrayList<ArrayList<Planete>> listListAccessibilite;
-<<<<<<< HEAD
 	protected ArrayList<Planete> listPlaneteRoche;
 	protected ArrayList<Planete> listPlaneteSol;
 	
@@ -36,16 +35,6 @@ public class Voyage extends AbstractVoyage {
 	public static ArrayList<ArrayList<Planete>> listChemin;
 	
 
-=======
-
-	public static ArrayList<Integer> listDistance;
-	public static ArrayList<ArrayList<Planete>> listChemin;
-	
-<<<<<<< HEAD
-
-=======
->>>>>>> 55ef811d440a7b4eca219318369d317b37f2cda2
->>>>>>> 451c2d004ed208a01fe83c3bcf1189cb1645c142
 	
 	
     public Voyage(ArrayList<Planete> listPlanete, AbstractVoyageur simulatedVoyageur) {
@@ -60,18 +49,11 @@ public class Voyage extends AbstractVoyage {
     	this.listListAccessibilite = new ArrayList<ArrayList<Planete>> ();
         this.listPlaneteCreusee = new ArrayList<Planete> ();
         this.listPlanetePrelevee = new ArrayList<Planete> ();
-<<<<<<< HEAD
-        this.listCulsdeSac = new ArrayList<Planete> ();
-    	this.listListAccessibilite = new ArrayList<ArrayList<Planete>> ();
     	this.listPlaneteRoche = new ArrayList<Planete> ();
     	this.listPlaneteSol = new ArrayList<Planete> ();
-=======
 
-        this.listCulsdeSac = new ArrayList<Planete> ();
 
-    	this.listListAccessibilite = new ArrayList<ArrayList<Planete>> ();
 
->>>>>>> 55ef811d440a7b4eca219318369d317b37f2cda2
     }
 
     /**
@@ -119,25 +101,14 @@ public class Voyage extends AbstractVoyage {
      */
     @Override
     public void lancementSimuler() {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
 
->>>>>>> 55ef811d440a7b4eca219318369d317b37f2cda2
->>>>>>> 451c2d004ed208a01fe83c3bcf1189cb1645c142
+
     	
     	this.lancement();
     	this.trouverPlaneteSuivante(listPlanete.get(2));
     	this.parcourirPlanetes();
     	
-<<<<<<< HEAD
-    	
-    	
-    	
-=======
-<<<<<<< HEAD
-    	
+
     	
 
         // TODO Auto-generated method stub
@@ -156,28 +127,10 @@ public class Voyage extends AbstractVoyage {
     	System.out.println(" Deuxieme appel " + this.listPlanetePhotographie);
     	*/
 
-=======
->>>>>>> 55ef811d440a7b4eca219318369d317b37f2cda2
->>>>>>> 451c2d004ed208a01fe83c3bcf1189cb1645c142
-
     }
 
-<<<<<<< HEAD
-    	
-    	/*
-    	this.deplacementXY(4,3);
-    	this.deplacementXY(1,2);
-    	this.deplacementXY(8, 9);
-    	this.deplacementXY(8, 1);
-    	this.deplacementXY(8, 9);    	
-    	
-=======
     public void parcourirPlanetes() {
-<<<<<<< HEAD
 
-=======
->>>>>>> 55ef811d440a7b4eca219318369d317b37f2cda2
->>>>>>> 451c2d004ed208a01fe83c3bcf1189cb1645c142
     	AbstractVoyageur _simulatedVoyageur = this.getSimulatedvoyageur();
     	ArrayList<Planete> _alreadyVisit = _simulatedVoyageur.getAlreadyVisit();
     	ArrayList<Planete> cheminLePlusCourt = trouverCheminPlusCourt();
@@ -193,20 +146,7 @@ public class Voyage extends AbstractVoyage {
     	}
 		_alreadyVisit.add(cheminLePlusCourt.get(cheminLePlusCourt.size()-1));
     }
-    
-    public void actionsPlanete(Planete planeteActuelle) {	
-        prendEchantillonRoche(planeteActuelle);
-        prendEchantillonSol(planeteActuelle);
-        prendrePhoto(planeteActuelle);
 
-    }
-
-    
-    
-<<<<<<< HEAD
-
-=======
-    
     public void createListPlaneteRoche() {
     	for (int i = 0; i < this.listPlanete.size(); i++) {
     		if (!(listPlanete.get(i).getEchantillonRoche() == null)) {
@@ -244,9 +184,7 @@ public class Voyage extends AbstractVoyage {
     		
     }
     
-<<<<<<< HEAD
-=======
->>>>>>> 451c2d004ed208a01fe83c3bcf1189cb1645c142
+
     public ArrayList<Planete> trouverCheminPlusCourt() {
     	int distMin = listDistance.get(0);
     	for(int i=1;i<listDistance.size();i++) {
@@ -257,11 +195,9 @@ public class Voyage extends AbstractVoyage {
 		return listChemin.get(listDistance.indexOf(distMin));
     }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 55ef811d440a7b4eca219318369d317b37f2cda2
->>>>>>> 451c2d004ed208a01fe83c3bcf1189cb1645c142
+
+
     public void trouverPlaneteSuivante(Planete planeteActuelle) {
     	// Fonction qui recherche la prochaine destination du voyageur et le prochain chemin jusqu a cette destination
     	
@@ -428,10 +364,7 @@ public class Voyage extends AbstractVoyage {
     	
     }
     
-<<<<<<< HEAD
-=======
 
->>>>>>> 55ef811d440a7b4eca219318369d317b37f2cda2
     public void deplacementXY(int X, int Y) {
     	// Fonction qui permet de deplacer le voyageur jusqu a des coordonnees X et Y donnees
     	
@@ -568,10 +501,7 @@ public class Voyage extends AbstractVoyage {
     	}
     }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 55ef811d440a7b4eca219318369d317b37f2cda2
     public void prendEchantillonRoche(Planete planeteActuelle) {
     	AbstractVoyageur _simulatedVoyageur = this.getSimulatedvoyageur();
     	if ((listPlanetePrelevee.size() == 0)&&(planeteActuelle.getEchantillonRoche()!=null)) {
@@ -598,13 +528,6 @@ public class Voyage extends AbstractVoyage {
     	int posYplanete1 = planete1.getPos().getY();
     	int posXplanete2 = planete2.getPos().getX();
     	int posYplanete2 = planete2.getPos().getY();
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-
->>>>>>> 55ef811d440a7b4eca219318369d317b37f2cda2
->>>>>>> 451c2d004ed208a01fe83c3bcf1189cb1645c142
     	int distance = Math.abs(posXplanete2-posXplanete1+posYplanete2-posYplanete1);
     	return(distance);
     }
