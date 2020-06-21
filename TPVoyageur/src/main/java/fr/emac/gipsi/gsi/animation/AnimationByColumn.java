@@ -24,7 +24,6 @@ public class AnimationByColumn extends AbstractAnimation{
 		showScreen(ecranDeb);
 		ecranInt=copyScreen(ecranDeb);
 		for(int col=0;col<ecranInt.getColMax()+1;col++){
-			System.out.println("startSend");
 			for(int lig=0;lig<ecranInt.getLigMax()+1;lig++){
 				ecranInt.updateColorByXY(lig, col, ecranFin.getColorByXY(lig,col));
 				this.showScreen(ecranInt);

@@ -65,7 +65,7 @@ public abstract class AbstractAnimation {
 		}
 		visualisationAnimation.changeEcran(ecranEnCours);
 		
-		System.out.println("MAJ");
+		//System.out.println("MAJ");
 	}
 	
 	

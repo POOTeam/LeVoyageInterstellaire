@@ -17,7 +17,7 @@ public class LaunchVoyage {
         Planete p1 = new Planete();
         p1.setColorName("DarkSalmon");
         p1.setEchantillonRoche(ListScreen.gruiki());
-        p1.setEchantillonSol(ListScreen.gruiki());
+        //p1.setEchantillonSol(ListScreen.gruiki());
         p1.setRayon(0);
         p1.getPos().setX(1);
         p1.getPos().setY(1);
@@ -25,7 +25,7 @@ public class LaunchVoyage {
 
         Planete p2 = new Planete();
         p2.setColorName("DeepPink");
-        //p2.setEchantillonRoche(ListScreen.funecire());
+        p2.setEchantillonRoche(ListScreen.funecire());
         //p2.setEchantillonSol(ListScreen.hericendre());
         p2.setRayon(0);
         p2.getPos().setX(0);
@@ -43,8 +43,8 @@ public class LaunchVoyage {
         
         Planete p4 = new Planete();
         p4.setColorName("Black");
-        //p4.setEchantillonRoche(ListScreen.funecire());
-        p4.setEchantillonSol(ListScreen.hericendre());
+        p4.setEchantillonRoche(ListScreen.funecire());
+        //p4.setEchantillonSol(ListScreen.hericendre());
         p4.setRayon(0);
         p4.getPos().setX(4);
         p4.getPos().setY(0);
