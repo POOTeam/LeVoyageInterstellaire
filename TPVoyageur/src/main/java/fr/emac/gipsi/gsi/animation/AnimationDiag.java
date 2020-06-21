@@ -15,7 +15,7 @@ public class AnimationDiag extends AbstractAnimation{
 				if((i-j<ecranInt.getLigMax()+1)&&(j<ecranInt.getColMax()+1)) {
 						ecranInt.updateColorByXY(i-j, j, ecranFin.getColorByXY(i-j, j));
 						showScreen(ecranInt);
-						wait(15);
+						wait(5);
 					}
 				}
 		}

@@ -15,7 +15,7 @@ public class AnimationSerpent extends AbstractAnimation{
 				for(int i=0;i<ecranInt.getColMax()+1;i++){
 				ecranInt.updateColorByXY(i, j, ecranFin.getColorByXY(i, j));
 				showScreen(ecranInt);
-				this.wait(20);
+				this.wait(5);
 				}
 			}
 			
@@ -23,7 +23,7 @@ public class AnimationSerpent extends AbstractAnimation{
 				for(int i=0;i<ecranInt.getColMax()+1;i++){
 					ecranInt.updateColorByXY(ecranInt.getColMax()-i, j, ecranFin.getColorByXY(ecranInt.getColMax()-i, j));
 					showScreen(ecranInt);
-					this.wait(20);
+					this.wait(5);
 					
 					}
 			}

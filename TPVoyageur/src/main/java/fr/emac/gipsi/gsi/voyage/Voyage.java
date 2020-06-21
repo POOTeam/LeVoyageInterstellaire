@@ -138,12 +138,17 @@ public class Voyage extends AbstractVoyage {
 
     	this.lancement();
     	
+    	this.afficheEcran();
+    	this.wait(200);
+    	
 		planeteActuelle = trouverPlaneteDepart();
     	this.actionsPlanete(planeteActuelle);
     	this.trouverPlaneteSuivante(planeteActuelle);
     	this.parcourirPlanetes();
 
     	while (testFin() == 0) {
+    		
+    		/*
     		System.out.println("Roche");
     		System.out.println(this.simulatedVoyageur.getListEchantillonRoche().size());
     		System.out.println(this.listPlaneteCreusee);
@@ -151,7 +156,7 @@ public class Voyage extends AbstractVoyage {
     		System.out.println(this.simulatedVoyageur.getListEchantillonSol().size());
     		System.out.println(this.listPlanetePrelevee);
     		System.out.println("");
-
+    		 */
 
 
     		planeteActuelle = trouverPlaneteActuelle();
@@ -276,11 +281,37 @@ public class Voyage extends AbstractVoyage {
     	
     	
     }
+    
+    public void animationsPlanete(Planete planeteActuelle) {
+    	if (planeteActuelle.getEchantillonRoche() != null) {
+    		this.executerAnimationAleatoire(ListScreen.premierEcran(), planeteActuelle.getEchantillonRoche());
+    		this.wait(200);
+    		if (planeteActuelle.getEchantillonSol() != null) {
+    			this.executerAnimationAleatoire(planeteActuelle.getEchantillonRoche(), planeteActuelle.getEchantillonSol());
+    			this.wait(200);
+        		this.executerAnimationAleatoire(planeteActuelle.getEchantillonSol(), ListScreen.premierEcran());
+        		//this.afficheEcran();
+        		this.wait(200);
+    		}
+    		else {
+    			this.executerAnimationAleatoire(planeteActuelle.getEchantillonRoche(), ListScreen.premierEcran());
+    			//this.afficheEcran();
+    		}
+    	}
+    	else if (planeteActuelle.getEchantillonSol() != null) {
+    		this.executerAnimationAleatoire(ListScreen.premierEcran(), planeteActuelle.getEchantillonSol());
+    		this.wait(200);
+    		this.executerAnimationAleatoire(planeteActuelle.getEchantillonSol(), ListScreen.premierEcran());
+    		//this.afficheEcran();
+    		this.wait(200);
+    	}
+    }
 
     public void actionsPlanete(Planete planeteActuelle) {
     	prendEchantillonRoche(planeteActuelle);
     	prendEchantillonSol(planeteActuelle);
-    	prendrePhoto(planeteActuelle);	
+    	prendrePhoto(planeteActuelle);
+    	animationsPlanete(planeteActuelle);
     	this.listCulsdeSac.remove(planeteActuelle);
     	if (!(this.simulatedVoyageur.getAlreadyVisit().contains(planeteActuelle))) {
         	this.simulatedVoyageur.getAlreadyVisit().add(planeteActuelle);
@@ -301,6 +332,9 @@ public class Voyage extends AbstractVoyage {
     }
     
     public ArrayList<Planete> trouverCheminPlusCourt() {
+    	System.out.println("a");
+    	System.out.println(listDistance);
+    	System.out.println(listChemin);
     	int distMin = listDistance.get(0);
     	for(int i=1;i<listDistance.size();i++) {
     		if(distMin>listDistance.get(i)) {
@@ -391,7 +425,7 @@ public class Voyage extends AbstractVoyage {
     	ArrayList<Planete> _listAccessibilite;
     	
     	// Si on a jamais ete sur la planete ou on est en ce moment
-    	if (!(alreadyVisit.contains(planeteActuelle))) {
+    	if (((planeteActuelle.getEchantillonRoche() != null) || (planeteActuelle.getEchantillonSol() != null)) && !(alreadyVisit.contains(planeteActuelle))) {
 			
     		System.out.println("");
 			System.out.println("On est jamais venu ici Chef !");
@@ -405,6 +439,9 @@ public class Voyage extends AbstractVoyage {
         	// Ajout du chemin et de la distance du chemin a deux variables globales
     		listChemin.add(cheminAAjouter);
     		listDistance.add(distEnCours);
+    		System.out.println("b");
+    		System.out.println(listChemin);
+    		System.out.println(listDistance);
     		
     		// Le voyageur retourne a la planete precedente,
     		// il enleve a distEnCours la distance entre les deux planetes
@@ -517,6 +554,94 @@ public class Voyage extends AbstractVoyage {
     	
     }
     
+    public void deplacementBordure(int X, int Y) {
+    	AbstractVoyageur _simulatedVoyageur = this.getSimulatedvoyageur();
+    	int posBodyX = _simulatedVoyageur.getPosBody().getX();
+    	int posBodyY = _simulatedVoyageur.getPosBody().getY();
+    	String direction = _simulatedVoyageur.getDirection();
+    	
+    	int distanceX = X - posBodyX;
+    	int distanceY = Y - posBodyY;
+    	
+    	if ((X == 0) || (X == this.getEcran().getLigMax())) {
+    		if (direction == "S" || direction == "N") {
+    			_simulatedVoyageur.turnLeft();
+    		}
+    		if (direction == "E" || direction == "O") {
+    			if ((distanceY < 0 && direction == "O") || (distanceY > 0 && direction == "E") && distanceY != 0) {
+            		for (int distanceParcourueY = 0 ; distanceParcourueY < Math.abs(distanceY) ; distanceParcourueY++) {
+            			_simulatedVoyageur.goForward();
+            			afficheEcran();
+            			wait(100);
+            		}
+        		}
+        		else if (distanceY !=0){
+            		for (int distanceParcourueY = 0 ; distanceParcourueY < Math.abs(distanceY) ; distanceParcourueY++) {
+            			_simulatedVoyageur.goBackward();
+            			afficheEcran();
+            			wait(100);
+            		}
+        		}
+        		if ((distanceX < 0 && direction == "O") || (distanceX > 0 && direction == "E") && distanceX != 0) {
+        			_simulatedVoyageur.turnLeft();
+        			afficheEcran();
+        			wait(100);
+        		}
+        		else if (distanceX != 0) {
+        			_simulatedVoyageur.turnRight();
+        			afficheEcran();
+        			wait(100);
+        		}
+        		for (int distanceParcourueX = 0 ; distanceParcourueX < Math.abs(distanceX) ; distanceParcourueX++) {
+        			_simulatedVoyageur.goBackward();
+        			afficheEcran();
+        			wait(100);
+        		}
+    		}
+    	}
+    	else if (Y == 0 || Y == this.getEcran().getColMax()) {
+    		if ( direction == "E" || direction == "O") {
+    			_simulatedVoyageur.turnLeft();
+    		}
+    		if (direction == "S" || direction == "N") {
+        		// Si le voyageur est oriente a l envers par rapport a sa destination
+        		if ((direction == "S" && distanceX < 0) || (direction == "N" && distanceX > 0) && distanceX != 0) {
+        			// On recule de la distance neccessaire
+            		for (int distanceParcourueX = 0 ; distanceParcourueX < Math.abs(distanceX) ; distanceParcourueX++) {
+            			_simulatedVoyageur.goBackward();
+            			afficheEcran();
+            			wait(100);
+            		}
+        		}
+        		// Sinon on avance de la distance neccessaire
+        		else if (distanceX !=0){
+        			for (int distanceParcourueX = 0 ; distanceParcourueX < Math.abs(distanceX) ; distanceParcourueX++) {
+        				_simulatedVoyageur.goForward();
+        				afficheEcran();
+        				wait(100);
+        			}
+        		}
+        		// Orientation du voyageur dans la bonne direction pour le trajet horizontal
+        		if ((distanceY < 0 && direction == "N") || (distanceY > 0 && direction == "S") && distanceY != 0) {
+        			_simulatedVoyageur.turnRight();
+        			afficheEcran();
+        			wait(100);
+        		}
+        		else if (distanceY != 0) {
+        			_simulatedVoyageur.turnLeft();
+        			afficheEcran();
+        			wait(100);
+        		}
+        		// Le voyageur avance jusqu a sa destination
+        		for (int distanceParcourueY = 0 ; distanceParcourueY < Math.abs(distanceY) ; distanceParcourueY++) {
+        			_simulatedVoyageur.goBackward();
+        			afficheEcran();
+        			wait(100);
+        		}
+        	}
+    	}
+    }
+    
     public void deplacementXY(int X, int Y) {
     	// Fonction qui permet de deplacer le voyageur jusqu a des coordonnees X et Y donnees
     	
@@ -528,7 +653,14 @@ public class Voyage extends AbstractVoyage {
     	int distanceX = X - posBodyX;
     	int distanceY = Y - posBodyY;
     	
+    	if (X == 0 || Y == 0 || X == this.getEcran().getLigMax() || Y == this.getEcran().getColMax()) {
+        	deplacementBordure(X,Y);
+    	}
+    	
+
+    	else {
     	// On commence les deplacements dans le sens du voyageur pour economiser de l energie (tourner consomme 1)
+
     	if (direction == "S" || direction == "N") {
     		// Si le voyageur est oriente a l envers par rapport a sa destination
     		if ((direction == "S" && distanceX < 0) || (direction == "N" && distanceX > 0) && distanceX != 0) {
@@ -601,6 +733,7 @@ public class Voyage extends AbstractVoyage {
     	}
     	System.out.println("On est arrive mon Capitaine !");
     	wait(500);
+    }
     }
      
     public void prendrePhoto(Planete planeteActuelle) {

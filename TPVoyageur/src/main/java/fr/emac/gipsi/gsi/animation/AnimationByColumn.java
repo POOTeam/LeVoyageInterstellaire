@@ -28,7 +28,7 @@ public class AnimationByColumn extends AbstractAnimation{
 			for(int lig=0;lig<ecranInt.getLigMax()+1;lig++){
 				ecranInt.updateColorByXY(lig, col, ecranFin.getColorByXY(lig,col));
 				this.showScreen(ecranInt);
-				this.wait(15);
+				this.wait(5);
 			}			
 		}
 		this.showScreen(ecranInt);

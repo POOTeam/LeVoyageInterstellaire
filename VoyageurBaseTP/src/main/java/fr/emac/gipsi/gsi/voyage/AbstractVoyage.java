@@ -95,8 +95,8 @@ public abstract class AbstractVoyage {
 	
 	private Screen chemin() {
 			Screen chemin = new Screen("chemin");
-			chemin.setColMax(19);
-			chemin.setLigMax(19);
+			chemin.setColMax(15);
+			chemin.setLigMax(10);
 			chemin.getRectangles().add(new VisualRectangle(0,0,"Tan"));
 			chemin.getRectangles().add(new VisualRectangle(0,1,"Tan"));
 			chemin.getRectangles().add(new VisualRectangle(0,2,"Tan"));
