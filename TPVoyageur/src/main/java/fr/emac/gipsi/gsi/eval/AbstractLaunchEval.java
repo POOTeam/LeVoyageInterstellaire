@@ -28,9 +28,9 @@ public abstract class AbstractLaunchEval {
 	public ArrayList<Screen> addScreens2ListOfScreen(){
 		// ajouter vos ecrans
 		ArrayList<Screen> listOfScreen = new ArrayList<>();
-		listOfScreen.add(ListScreen.first());
-		listOfScreen.add(ListScreen.second());
-		listOfScreen.add(ListScreen.first());
+		listOfScreen.add(ListScreen.gobu());
+		listOfScreen.add(ListScreen.germinion());
+		listOfScreen.add(ListScreen.gobu());
 		
 		return listOfScreen;
 	}
